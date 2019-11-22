@@ -1,0 +1,9 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ProtoDemo";
+
+message PersoonPB {
+    string voornaam = 1;
+    string achternaam = 2;
+    int32 leeftijd = 3;
+}
