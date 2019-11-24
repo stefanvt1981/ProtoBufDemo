@@ -25,10 +25,15 @@ namespace ProtoDemo
             ser.Serialize(outputStream, persoon);
 
             string xml = outputStream.ToString();
+
+            Console.WriteLine($"XML Serialized object: [{xml}]");
+
             outputStream.Dispose();
 
             // JSON
             var json = JsonConvert.SerializeObject(persoon);
+
+            Console.WriteLine($"JSON Serialized object: [{json}]");
 
             // Protocol Buffers
             var persoonPB = new PersoonPB
@@ -45,11 +50,18 @@ namespace ProtoDemo
 
             using (var input = File.OpenRead("persoon.dat"))
             {
+                var persoonDeserialized = PersoonPB.Parser.ParseFrom(input);
+            }
+
+            using (var input = File.OpenRead("persoon.dat"))
+            {
                 using var sr = new StreamReader(input, Encoding.UTF8);
 
                 string content = sr.ReadToEnd();
 
+                Console.WriteLine($"ProtoBuf Serialized object: [{content}]");
             }
+
         }
     }
 }
